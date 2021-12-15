@@ -1,5 +1,5 @@
 <template>
-  <h1>hello gemography</h1>
+  <h1 class="text-red-400">hello gemography</h1>
 </template>
 
 <script>
