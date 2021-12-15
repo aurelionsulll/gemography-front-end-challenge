@@ -2,7 +2,7 @@
 	<section class="antialiased text-gray-600 h-screen px-4">
 		<div class="flex flex-col justify-center my-20">
 			<div
-				class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200"
+				class="w-full max-w-3xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200"
 			>
 				<header class="px-5 py-4 border-b border-gray-100">
 					<h2 class="font-semibold text-gray-800">Most starred Github repos</h2>
@@ -39,7 +39,8 @@
 		methods: {
 			getRepos() {
 				axios.get(
-					'https://api.github.com/search/repositories?q=created:>2017-10-22&sort=stars&order=desc'
+					'https://api.github.com/search/repositories?q=created:>2017-10-22&sort=stars&order=desc&page=' +
+						2
 				)
 					.then((res) => {
 						this.repos = res.data.items;
