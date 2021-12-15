@@ -1,6 +1,6 @@
-<template>
-	<section class="antialiased bg-gray-100 text-gray-600 h-screen px-4">
-		<div class="flex flex-col justify-center h-full">
+<template class="bg-gray-100">
+	<section class="antialiased text-gray-600 h-screen px-4">
+		<div class="flex flex-col justify-center my-20">
 			<div
 				class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200"
 			>
@@ -8,7 +8,9 @@
 					<h2 class="font-semibold text-gray-800">Most starred Github repos</h2>
 				</header>
 				<div class="p-3">
-					<RepoComponent />
+					<div v-for="repo in repos" :key="repo">
+						<RepoComponent class="mt-5" :repo="repo" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -16,16 +18,16 @@
 </template>
 
 <script>
+	import RepoComponent from './components/RepoComponent.vue';
 	import axios from 'axios';
-	import RepoComponent from '@/components/RepoComponent';
 
 	export default {
-		component: {
+		components: {
 			RepoComponent,
 		},
 
 		created() {
-			// this.getRepos()
+			this.getRepos();
 		},
 
 		data() {
@@ -39,11 +41,11 @@
 				axios.get(
 					'https://api.github.com/search/repositories?q=created:>2017-10-22&sort=stars&order=desc'
 				)
-					.then((res) => console.log(res.data.items))
+					.then((res) => {
+						this.repos = res.data.items;
+					})
 					.catch((error) => console.log(error));
 			},
 		},
 	};
 </script>
-
-<style></style>

@@ -6,7 +6,7 @@
 			alt="repo name"
 		/>
 		<div class="space-y-3">
-			<h2>Repo name</h2>
+			<h2>{{ repo.name }}</h2>
 			<p class="">
 				Repo description Lorem ipsum dolor sit amet consectetur adipisicing elit.
 				Maiores temporibus, commodi odit nam neque
@@ -24,6 +24,12 @@
 	</div>
 </template>
 
-<script></script>
+<script>
+	export default {
+		props: {
+			repo: Object,
+		},
+	};
+</script>
 
 <style></style>
