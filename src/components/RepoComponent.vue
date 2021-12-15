@@ -18,17 +18,26 @@
 						>Issues: {{ repo.open_issues_count }}</span
 					>
 				</div>
-				<!-- momento impl -->
-				<p>Submited 30 days ago by {{ repo.owner.login }}</p>
+				<p>
+					Submited {{ currentDateTime(repo.created_at) }}
+					{{ repo.owner.login }}
+				</p>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import moment from 'moment';
+
 	export default {
 		props: {
 			repo: Object,
+		},
+		methods: {
+			currentDateTime(date) {
+				return moment(date, 'YYYYMMDD').fromNow();
+			},
 		},
 	};
 </script>
